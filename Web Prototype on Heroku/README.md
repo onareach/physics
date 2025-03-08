@@ -1,127 +1,206 @@
-# README.md
+# Physics Program Prototype Setup
 
-# Physics Program Prototype
+## Overview of the Plan for the Prototype Physics Web App
 
-## Overview
-This project is a prototype web application for viewing and managing physics formulas. It uses **Flask** as the backend framework, **PostgreSQL** as the database, and **Jinja** for templating. The app is deployed on **Heroku**.
+**Framework:** Use Flask (a lightweight Python web framework) to create a web front-end instead of using the terminal.
 
-## Features
-- Store physics formulas in a PostgreSQL database.
-- View formulas dynamically using MathJax for proper LaTeX rendering.
-- Flask-based backend with SQLAlchemy for database management.
-- Deployment on Heroku with **Gunicorn** as the production server.
+**Database:** Store physics formulas in PostgreSQL, which is Heroku’s default database.
 
-## Project Structure
+**Front-End UI:** Use HTML + Jinja (Flask’s built-in templating engine) to dynamically display formulas.
+
+**Deployment:** Push everything to Heroku and run it as a live web app.
+
+## Step 1: Set Up Your Local Development Environment
+
+### Best Practice for Managing Git and Virtual Environments (VENV)
+
+#### Recommended Project Structure
 ```
 your_project/
-│── venv/               # Virtual environment (ignored by Git)
-│── app.py              # Flask application
-│── models.py           # Database models
-│── templates/          # HTML templates
-│── static/             # [Optional] CSS, JS, Images
-│── requirements.txt    # Dependencies
-│── Procfile            # Heroku startup instructions
-│── .gitignore          # Files to ignore in Git
-│── README.md           # Project documentation
-│── config.py           # [Optional] Configuration settings
-│── .python-version     # Specifies Python version
+│── venv_[project_name]/  # Virtual environment (ignored by Git)
+│── app.py                # Your Flask application
+│── models.py             # Database models
+│── templates/            # Directory for templates used by Flask
+│── templates/index.html  # index.html template (includes MathJax)
+│── static/               # [optional] CSS, JS, Images
+│── requirements.txt      # Dependencies (tracked by Git)
+│── Procfile              # Heroku startup instructions (tracked by Git)
+│── .gitignore            # Files/folders to ignore (including venv)
+│── README.md             # Project documentation
+│── config.py             # [optional] Configuration settings
+│── .python-version       # Specifies version of Python the app runs
 ```
 
-## Installation
-
-### 1. Clone the repository
+### Create Project Directory
+Navigate to the directory location where you want to create the project directory:
 ```bash
-git clone https://github.com/YOUR_USERNAME/physics-program-prototype.git
-cd physics-program-prototype
+mkdir [project_folder_name]
+cd [project_folder_name]
 ```
 
-### 2. Create and activate a virtual environment
+### Create and Activate venv (macOS)
 ```bash
-python3 -m venv venv
-source venv/bin/activate  # macOS/Linux
-venv\Scripts\activate    # Windows
+python3 -m venv [venv_name]
+source ./[venv_name]/bin/activate
 ```
 
-### 3. Install dependencies
+### Install Required Python Dependencies
+Ensure you are inside the activated virtual environment before running:
 ```bash
-pip install -r requirements.txt
+pip install flask
+pip install flask_sqlalchemy
+pip install psycopg2-binary
+pip install gunicorn
 ```
 
-### 4. Set up the database
+**Note:** You can install all of these packages with one `pip install` command, but installing them individually makes troubleshooting easier.
+
+### Install Global Dependencies (MacOS)
+**Install PostgreSQL (if not installed)**
 ```bash
-flask db upgrade
+brew install postgresql
 ```
-
-### 5. Run the application locally
+**Verify PostgreSQL installation**
 ```bash
-flask run
+psql --version
 ```
+**Install Heroku CLI**
+```bash
+brew install heroku
+```
+**Verify Installation**
+```bash
+heroku --version
+```
+If installed correctly, it will display the version number.
 
-The app will be accessible at `http://127.0.0.1:5000/`.
-
-## Deploying to Heroku
-### 1. Log in to Heroku
+**Log into Heroku**
 ```bash
 heroku login
 ```
+This will open a web browser page where you can authenticate your account.
 
-### 2. Create a Heroku app
+## Step 2: Define Your Database Model File (models.py)
+Create a `models.py` file to store formulas in a PostgreSQL database:
+```python
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
+class Formula(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    formula_name = db.Column(db.String(100), nullable=False)
+    latex = db.Column(db.Text, nullable=False)
+
+def __repr__(self):
+    return f"<Formula {self.formula_name}>"
+```
+
+## Step 3: Create the Flask App File (app.py)
+Create `app.py`:
+```python
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
+import os
+from models import db, Formula
+
+app = Flask(__name__)
+
+# Fix the DATABASE_URL issue for Heroku
+database_url = os.getenv("DATABASE_URL")
+if database_url and database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql://", 1)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = database_url
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db.init_app(app)
+
+@app.route("/")
+def home():
+    formulas = Formula.query.all()
+    return render_template("index.html", formulas=formulas)
+
+if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
+```
+
+## Step 4: Create index.html Template
+Create a `templates` directory:
+```bash
+mkdir templates
+```
+Inside `templates/`, create `index.html`:
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Physics Formulas</title>
+    <script type="text/javascript" async
+        src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script type="text/javascript" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <h1>Physics Formulas</h1>
+    <ul>
+        {% for formula in formulas %}
+            <li>{{ formula.formula_name }}: <span>$$ {{ formula.latex }} $$</span></li>
+        {% endfor %}
+    </ul>
+    <script>
+        window.onload = function() {
+            MathJax.typeset();
+        };
+    </script>
+</body>
+</html>
+```
+
+## Step 5: Deploy to Heroku
+### Prepare Git Repository
+```bash
+git init
+git add .
+git commit -m "Initial commit"
+```
+### Create `requirements.txt`
+```bash
+pip freeze > requirements.txt
+```
+### Create `Procfile`
+```bash
+echo "web: gunicorn app:app" > Procfile
+```
+### Create and Deploy to Heroku
 ```bash
 heroku create my-physics-formula-viewer
-```
-
-### 3. Add PostgreSQL
-```bash
 heroku addons:create heroku-postgresql --app my-physics-formula-viewer
 ```
-
-### 4. Deploy the app
+### Push to Heroku
 ```bash
 git push heroku main
 ```
-
-### 5. Initialize the database on Heroku
+### Initialize the Database
 ```bash
 heroku run python
 ```
-Then, inside the Heroku shell:
+Inside the Heroku shell, run:
 ```python
 from app import db, app
 with app.app_context():
     db.create_all()
 ```
-
-### 6. Open the live app
+## Step 6: Open the App
 ```bash
 heroku open
 ```
+You should now see your formulas displayed dynamically from the PostgreSQL database.
 
-## License
-This project is licensed under the **MIT License**. See `LICENSE` for details.
-
----
-
-# LICENSE (MIT)
-
-MIT License
-
-Copyright (c) 2025
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+## Next Steps & Enhancements
+- **Admin Panel for Editing Formulas** → Use Flask-WTF or Flask-Admin.
+- **User Authentication** → Implement Flask-Login for user management.
+- **Deploy a React/Vue Front-End** → Host front-end separately while using Heroku as an API.
 
