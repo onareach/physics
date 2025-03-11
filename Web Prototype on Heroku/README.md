@@ -1,6 +1,6 @@
 # Setting Up a Web App on Heroku
 
-This proof-of-concept project is shows how a three-tier application (database, backend-server, and web page) can be hosted on Heroku, a PaaS (Platform as a Service). The application's functionality is simply to display a collection of physics formulas stored in a database.
+This proof-of-concept project shows how a three-tier application (database, backend-server, and web page) can be hosted on Heroku, a PaaS (Platform as a Service). The application's functionality is simply to display a collection of physics formulas stored in a database.
 
 
 
