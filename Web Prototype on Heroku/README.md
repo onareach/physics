@@ -402,5 +402,5 @@ Quite the Heroku psql session:
 
 ### Troubleshooting
 
-If the web page doesn't open and display the correct data, I have found ChatGPT is a pretty good resource for troubleshooting the errors. Cut and paste the error into the ChatGPT, provide it with some context about where the error occurred, and it's likely to offer some useful information.
+If the web page doesn't open and display the correct data, I have found ChatGPT is a pretty good resource for troubleshooting the errors. Cut and paste the error into ChatGPT, provide it with some context about where the error occurred, and it's likely to offer some useful information.
 
