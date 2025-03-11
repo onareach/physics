@@ -276,7 +276,7 @@ Local git tracking needs to be initialized *before* the Heroku application is cr
 
 (The Heroku application name must begin and end with a letter.)
 
-For future reference, add the URL that Heroku creates for the application as a comment in the app.py file.
+For future reference, you may want to add the URL that Heroku creates for the application as a comment in the app.py file. (If you update app.py, you will need to stage and commit app.py in the local git repository before proceeding.)
 
 ##### Verify the application was created
 
