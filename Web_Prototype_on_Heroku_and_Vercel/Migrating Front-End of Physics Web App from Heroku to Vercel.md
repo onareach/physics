@@ -10,7 +10,7 @@ This proof-of-concept project shows how the front-end of a three-tier applicatio
     │── backend/              		# Backend master project folder
     	│── physics_web_app_3/			# Flask/FastAPI app (deployed on Heroku)
     │── frontend/             		# Frontend master project folder
-    	│── [Next.js app files]	    # Next.js app (to be deployed on Vercel)
+    	│── [Next.js app files]			# Next.js app (to be deployed on Vercel)
 
 
 
