@@ -1,0 +1,11 @@
+# Ignore virtual environment
+venv_physics_web_app/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore system-specific files
+.DS_Store
+.env

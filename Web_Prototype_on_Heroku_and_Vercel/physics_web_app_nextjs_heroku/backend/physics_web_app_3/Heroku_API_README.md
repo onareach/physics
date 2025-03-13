@@ -1,0 +1,1 @@
+After the Heroku backend has been converted into an API, the templates folder and index.html template are no longer required.
