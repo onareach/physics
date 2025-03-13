@@ -765,9 +765,9 @@ In the CORS section of the app.py, add the current Vercel URL, so the backend wi
 Even though a file named ***.env.local*** exists in the ***frontend/src/app*** directory, Vercel may not automatically detect it, so you need to enter it manually in the *Vercel Dashboard*. To do that, take the following steps:
 
 1. Log in to Vercel (vercel.com). 
-2. On the ***Overview*** tab, you will see the project listed.  In this case, the project is listed as **physics_web_app**. 
+2. On the ***Overview*** tab, you will see the project listed as **physics_web_app**.
 3. Click on the project name and then click on the ***Settings*** tab. 
-4. On the left side of the ***Project Settings*** page, there is a list of links to different types of settings. Click on the ***Environment Variables*** link. 
+4. On the left side of the ***Project Settings*** page, you will find links to various settings. Click on the ***Environment Variables*** link. 
 5. On the ***Environment Variables*** page, scroll down to see if the **NEXT_PUBLIC_API_URL** key has been entered. If it has been previously entered, it will be listed just ***above*** the ***Shared Environment Variables*** section. The key name will be visible, but the value will be hidden.
 6. If the **NEXT_PUBLIC_API_URL** key does not appear, click on the ***Add Another*** button, enter the key name of **NEXT_PUBLIC_API_URL** and the value of Heroku API URL (which in this case is https://my-physics-formula-viewer-3x-3e0ec7edbc22.herokuapp.com). 
 7. Save this new key and value. When you save this value, the Vercel app will be rebuilt and (I believe) its URL will change. However, wait until a later step, when the URL changes again, before updating it in the CORS section of `app.py`.
@@ -857,3 +857,16 @@ In a browser window, enter the final Vercel URL:
     https://physicsweb-qzhqw8vdi-david-longs-projects-14094a66.vercel.app
 
 The browser should now display the same content at the public URL as it did when pointing to localhost.
+
+
+
+#### 8.  Make the Web Page Public
+
+By default, the Vercel URL is protected with a Vercel login. To make the URL public and remove the login requirement:
+
+1. Log in to Vercel (vercel.com). 
+2. On the ***Overview*** tab, you will see the project listed as **physics_web_app**.
+3. Click on the project name and then click on the ***Settings*** tab.
+4. On the left side of the ***Project Settings*** page, there is a list of links to different types of settings. Click the ***Deployment Protection*** link.
+5. Under the **Vercel Authentication** heading, toggle the switch from **Enabled** to **Disabled**, then click **Save**.
+6. Open a browser in incognito mode and navigate to the application's URL. The web page should appear without requiring a login.
