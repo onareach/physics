@@ -10,7 +10,7 @@ This proof-of-concept project shows how the front-end of a three-tier applicatio
     │── backend/              		# Backend master project folder
     	│── physics_web_app_3/			# Flask/FastAPI app (deployed on Heroku)
     │── frontend/             		# Frontend master project folder
-    	│── physics_next_app_3/     # Next.js app (to be deployed on Vercel)
+    	│── [Next.js app files]	    # Next.js app (to be deployed on Vercel)
 
 
 
@@ -20,33 +20,33 @@ This proof-of-concept project shows how the front-end of a three-tier applicatio
 2. Set up a Next.js app locally.
 3. Connect Next.js frontend to Heroku backend.
 4. Deploy Next.js app on Vercel.
-5. Final configuration.
+5. Final configuration. (Give public access to Vercel app.)
 
 
 
 #### A few notes about Node.js, Next.js, NPM, React, and DOM
 
-**Node.js** is a JavaScript runtime that allows you to run JavaScript code outside the browser. It is used to build backend servers, run scripts, and execute JavaScript on the server side. It is required to run Next.js because Next.js uses Node.js to handle server-side rendering (SSR), API routes, and builds. Node.js runs the Next.js development server. You can think of Node.js as the engine that powers JavaScript outside the browser.
+**Node.js** is a JavaScript runtime environment that allows you to run JavaScript code outside the browser. It is used to build backend servers, run scripts, and execute JavaScript on the server side. It is required to run Next.js because Next.js uses Node.js to handle server-side rendering (SSR), API routes, and builds. Node.js runs the Next.js development server. You can think of Node.js as the engine that powers JavaScript outside the browser.
 
-**Next.js** is a *React* framework for building full-stack applications. It is built on top of React and provide features like server-side rendering (SSR), static site generation(SSG), and API routes. You can think of Next.js as a framework that makes React more powerful, using Node.js to enable server-side functionality. If you're only using Next.js for front-end development, you don't need extensive Node.js knowledge. But if you're using API routes, server-side rendering, or customer backend logic, knowing Node.js helps.
+**Next.js** is a *React* framework for building full-stack applications. Next.js is built on top of React and provides features like server-side rendering (SSR), static site generation (SSG), and API routes. You can think of Next.js as a framework that makes React more powerful, using Node.js to enable server-side functionality. If you're only using Next.js for front-end development, you don't need extensive Node.js knowledge. But if you're using API routes, server-side rendering, or custom backend logic, knowing Node.js is likely essential.
 
-**Node Package Manager** (npm) plays that role for JavaScript that pip (Preferred Installer Program) does for Python. It is used to install, manage, and update JavaScript libraries (called packages or modules) for both backend and frontend development. It comes automatically installed when you install Node.js. A tool called npx comes with npm and allows you to run a package without installing it globally. For example, the command used below  `npx create-next-app` fetches and runs the Next.js setup script without installing it globally.
+**Node Package Manager** (npm) plays the same role for JavaScript that pip (Preferred Installer Program) plays for Python. It is used to install, manage, and update JavaScript libraries (called packages or modules) for both backend and frontend development. It comes automatically installed when you install Node.js. A tool called `npx` comes with `npm` and allows you to run a package without installing it globally. For example, the command used below  `npx create-next-app` fetches and runs the Next.js setup script without installing it globally.
 
-**React** is a JavaScript library for building user interfaces (UIs), primarily for single-page applications (SPAs). It was developed by Facebook (now Meta) and is open-source. It enables fast, interactive, and reusable UI components. React is use for building dynamic web apps, creating reusable UI components, and making frontend development more structured and scalable.
+**React** is a JavaScript library for building user interfaces (UIs), primarily for single-page applications (SPAs). It was developed by Facebook (now Meta) and is open-source. It enables fast, interactive, and reusable UI components. React is used for building dynamic web apps, creating reusable UI components, and making frontend development more structured and scalable.
 
 The reasons for using React:
 
 - React is **Component-Based**. UIs are built from independent, reusable components.
 - **Fast Updates with Virtual DOM** (document object model). React efficiently updates only the necessary parts of the page.
-- **Declarative Syntax**. Instead of manually manipulation DOM, you describe how the UI should look, and React updates it.
-- **Great for Large-Scale Apps**. Used by companies like Netflix, Facebook, and Uber.
-- **Huge Ecosystems**. Works well with Next.js, React Native (for mobile apps), and many UI libraries.
+- **Declarative Syntax**. Instead of manually manipulating DOM, you describe how the UI should look, and React updates it.
+- **Great for Large-Scale Applications**. Used by companies like Netflix, Facebook, and Uber.
+- **Huge Ecosystem**. Works well with Next.js, React Native (for mobile apps), and many UI libraries.
 
 
 
 **DOM (Document Object Model)** is a programming interface that represents a web page as a tree-like structure. It allows JavaScript to dynamically update, add, and remove elements on a webpage. In the DOM tree, every HTML element is a node. 
 
-To give an example of how DOM represents and HTML page, consider the following HTML code:
+To give an example of how the DOM represents and HTML page, consider the following HTML code:
 
     html
     
@@ -60,9 +60,9 @@ To give an example of how DOM represents and HTML page, consider the following H
         <p>This is a paragraph.</p>
       </body>
     </html>
-    
 
-The DOM representation (Tree Structure) is as follows:
+
+The DOM representation (tree structure) is as follows:
 
     Document
      ├── <html>
@@ -71,11 +71,11 @@ The DOM representation (Tree Structure) is as follows:
      │    ├── <body>
      │         ├── <h1>Hello, World!</h1>
      │         ├── <p>This is a paragraph.</p>
-    
 
-Every element (&lt;html&gt; , &lt;head&gt; , &lt;body&gt; , &lt;h1&gt; , etc.) is a node in this tree.
 
-JavaScript can access and modify the DOM using the  `document` object.  Here's an example of changing text:
+Every element (&lt;html&gt;, &lt;head&gt;, &lt;body&gt;, &lt;h1&gt;, etc.) is a node in this tree.
+
+JavaScript can access and modify the DOM using the  `document` object. Here's an example of changing text:
 
  
 
@@ -97,9 +97,9 @@ This should open the current app (hosted entirely on Heroku) in the web browser.
 
 
 
-#### 2.  Install CORS package and regenerate requirements.txt
+#### 2.  Install CORS Package and Regenerate requirements.txt
 
-CORS (Cross-Origin Resource Sharing) is a security feature in web browsers that controls how resources (like font, APIs, or data) can be accessed from a different domain that the one that served the web page. By default, browsers follow the Same-Origin Policy (SOP), which blocks JavaScript from sending requests to a different domain. CORS relaxes this policy safely by allowing controlled cross-origin requests. If a front-end app tries to fetch data from an API with a different domain, the browser blocks the request unless the API explicitly allows it via CORS headers. A server can enable CORS from all origins:
+CORS (Cross-Origin Resource Sharing) is a security feature in web browsers that controls how resources (like fonts, APIs, or data) can be accessed from a different domain than the one that served the web page. By default, browsers follow the Same-Origin Policy (SOP), which blocks JavaScript from sending requests to a different domain. CORS relaxes this policy safely by allowing controlled cross-origin requests. If a frontend app tries to fetch data from an API on a different domain, the browser blocks the request unless the API explicitly allows it via CORS headers. A server can enable CORS from all origins:
 
     http
     
@@ -113,7 +113,7 @@ Or, CORS can allow requests from specific domains:
 
 
 
-Activate the Python venv (inside the project folder) in the project folder and install the flask-cors package:
+Activate the Python virtual environment (venv) inside the project folder and install the flask-cors package:
 
     venv
     
@@ -150,19 +150,19 @@ Update app.py with the following code:
     if __name__ == '__main__':
         app.run(debug=True)
 
-Note that on the line under the command "# Allow frontend to access backend", we are giving permission to the localhost access to the backend API. Later, the URL of the Vercel hosted frontend will be inserted.
+Note that on the line under the comment '# Allow frontend to access backend,' we are granting localhost access to the backend API. Later, the URL of the Vercel hosted frontend will be inserted.
 
-The  `jsonify()` function in the code above converts Python data structures (like dictionaries and lists) into JSON format and returns an HTTP response. When you return JSON data using  `jsonify()`, Flask automatically sets the response header as follows:
+The `jsonify()` function in the code above converts Python data structures (such as dictionaries and lists) into JSON format and returns an HTTP response. When you return JSON data using  `jsonify()`, Flask automatically sets the response header as follows:
 
     http
     
     Content-Type: application/json
 
-This tells the client (e.g., a browser) that the response is JSON (in contrast to HTML). Browsers render HTML visually as web pages. Browsers process JSON with a JavaScript interpreter. After they process the data in the JSON, browsers such as Chrome, Firefox, and Edge, display  JSON is a readable format. (Older browsers may show it as plain text.) A Next.js frontend app that receives JSON from the backend API will take the data and format it into a webpage. 
+This tells the client (e.g., a browser) that the response is JSON (in contrast to HTML). Browsers render HTML visually as web pages, whereas JSON is processed by a JavaScript interpreter. After processing the JSON data, browsers such as Chrome, Firefox, and Edge display it in a readable format. (Older browsers may display it as plain text.) A Next.js frontend app that receives JSON from the backend API will use the data to generate a webpage. 
 
  
 
-#### 4.  Git commit and push changes
+#### 4.  Commit and Push Changes to Git
 
     bash
     
@@ -172,7 +172,7 @@ This tells the client (e.g., a browser) that the response is JSON (in contrast t
 
 
 
-#### 5.  Restart Heroku app and verify process status
+#### 5.  Restart Heroku App and Verify Its Process Status
 
     bash
     
@@ -215,7 +215,7 @@ The output should be:
 
 #### 1. Use mkdir and mv to create file structure shown at the introduction of this document
 
-The master folder structure (shown near the beginning of this document) needs to be created with mkdir commands, and the older Heroku project folder needs to be moved, using the mv command, inside the backend subfolder. After this is completed, the 
+The master folder structure (shown near the beginning of this document) needs to be created with mkdir commands, and the older Heroku project folder needs to be moved, using the mv command, inside the backend subfolder. After this is completed, the top of the folder and file structures should look like this:
 
     bash
     
@@ -257,10 +257,10 @@ I chose the following:
 | Use TypeScript?         | No     | Fine for now. You can add TypeScript later if needed.        |
 | Use ESLint?             | Yes    | Good choice. Helps catch bugs and enforce best practices.    |
 | Use Tailwind CSS?       | Yes    | Great choice. Tailwind makes styling faster and more flexible. |
-| Use src/ directory?     | Yes    | Greate choice. Using the src/ directory is a recommended practice for better project organization. |
+| Use src/ directory?     | Yes    | Great choice. Using the src/ directory is a recommended practice for better project organization. |
 | Use App Router?         | Yes    | Recommended. This enables Next.js' latest features like Server Components and better API handling. |
 | Use Turbopack?          | Yes    | Good for speed. Turbopack makes development builds faster.   |
-| Customize import alias? | No     | Fine for now. The default @/* alians is useful for cleaner imports, but you can add it manually later if needed. |
+| Customize import alias? | No     | Fine for now. The default @/* alias is useful for cleaner imports, but you can add it manually later if needed. |
 
 After choosing the options, the output was as follows:
 
@@ -301,7 +301,7 @@ After choosing the options, the output was as follows:
     npm notice Run npm install -g npm@11.2.0 to update!
     npm notice 
 
-Do not upgrade npm (Node Package Manager) which is the default package manager for Node.js.
+Do not upgrade npm (Node Package Manager), which is the default package manager for Node.js.
 
 
 
@@ -314,7 +314,7 @@ Run the following commands:
     cd frontend
     npm run dev
 
-You should see ouput like:
+You should see output like:
 
     bash
     
@@ -332,7 +332,7 @@ You should see ouput like:
     https://nextjs.org/telemetry
     
      ✓ Ready in 1953ms
-    
+
 
 Open http://localhost:3000 in your browser, and you should see the default Next.js welcome page.
 
@@ -354,9 +354,9 @@ Add the following contents that contain the backend API URL to the file:
 
     NEXT_PUBLIC_API_URL=https://my-physics-formula-viewer-3x-3e0ec7edbc22.herokuapp.com
 
-Environment variables prefixed with NEXT_PUBLIC_ are exposed to frontend applications and browsers.
+Environment variables prefixed with NEXT_PUBLIC_* are exposed to frontend applications and browsers.
 
-One way you can confirm that this configuration in in place is by open a new browser tab and entering the following URL:
+One way you can confirm that this configuration in place is by opening a new browser tab and entering the following URL:
 
     (web browser)
     
@@ -397,9 +397,9 @@ Then restart the server:
     
     npm run dev
 
-After the server is restarted, refresh the browser tab that is displaying http://localhost:3000. You should now see the following text on that web page (instead of the Next.js welcome page seen previously:
+After restarting the server, refresh the browser tab displaying http://localhost:3000. You should now see the following text on that web page (instead of the Next.js welcome page seen previously):
 
-    chrome
+    (browser)
     
     Physics Formula Viewer
     Welcome to your Next.js app using the App Router!
@@ -420,7 +420,7 @@ This confirms that the Next.js frontend is running. The frontend project structu
 
 
 
-#### 4.  Modify app.py (backend) to get formula data from backend database, convert the data into a dictionary (which is then processed by jsonify) 
+#### 4.  Modify app.py (backend) to retrieve formula data from the backend database, convert it into a dictionary, and process it with `jsonify()`
 
 Replace the code in app.py with the following code:
 
@@ -467,7 +467,7 @@ Replace the code in app.py with the following code:
     
     if __name__ == '__main__':
         app.run(debug=True)
-    
+
 
 #### 5.  Git commit, push changes, and restart Heroku
 
@@ -498,9 +498,9 @@ The output should be:
 
 #### 7.  Modify page.tsx (frontend)
 
-Replace the contents of page.tsx with the following code:
+Replace the contents of page.tsx (in src/app/) with the following code:
 
-    //page.tsx
+    // page.tsx
     
     'use client';
     
@@ -545,13 +545,13 @@ Replace the contents of page.tsx with the following code:
         </div>
       );
     }
-    
+
 
 
 
 #### 8.  Restart the frontend (local) server
 
-Enter Ctrl + C in the Terminal running the frontend server, then restart the frontend server:
+Press Ctrl + C in the terminal to stop the frontend server, then restart it with:
 
     npm run dev
 
@@ -580,7 +580,7 @@ Stop the frontend server (Ctrl + C) and run the following command in the fronten
 
 
 
-#### 11.  Modify page.tsx to Use MathJax and Add Margins
+#### 11.  Modify page.tsx to Use MathJax and Add Spacing
 
 Update src/app/page.tsx:
 
@@ -633,7 +633,7 @@ Update src/app/page.tsx:
         </MathJaxContext>
       );
     }
-    
+
 
 
 
@@ -643,7 +643,7 @@ Update src/app/page.tsx:
     
     npm run dev
 
-The browser should now display the physics formulas in the conventional mathematical format:
+The browser should now render the physics formulas in a proper mathematical format:
 
 
 
@@ -661,9 +661,9 @@ Run the following command inside the frontend directory:
     
     sudo npm install -g vercel
 
-Because you are installing vercel globally, the sudo command is necessary to prompt you for an administrative password. Enter your password for the machine you are working on.
+Because you are installing Vercel globally, the `sudo` command is necessary to prompt for an administrative password. Enter your password for the machine you are working on.
 
-Note: You will receive warnings that some of the dependencies of vercel have been deprecated. They are non-critical errors that can be ignored for now.
+Note: You may receive warnings that some of Vercel's dependencies have been deprecated. They are likely to be non-critical errors that can be ignored for now.
 
 
 
@@ -675,7 +675,7 @@ Inside the frontend directory, run the following command:
     
     vercel
 
-A whole slew of choices follow. Here's a copy of the login and build dialog:
+Several configuration prompts will follow. Here's a copy of the login and build dialog:
 
     Vercel CLI 41.4.0
     > NOTE: The Vercel CLI now collects telemetry regarding usage of the CLI.
@@ -715,7 +715,7 @@ The production URL to emerge from this is:
 
 In the CORS section of the app.py, add the current Vercel URL, so the backend will accept queries from it. 
 
-(NOTE: EVERYTIME TIME YOU RUN THE vercel --prod COMMAND, A NEW URL WILL BE GENERATED AND THE APP.PY FILE WILL NEED TO BE UPDATED. THIS WILL BE SHOWN LATER ON.)
+**NOTE: EVERY TIME YOU RUN THE `vercel --prod` COMMAND, A NEW URL WILL BE GENERATED, AND THE `app.py` FILE WILL NEED TO BE UPDATED.**
 
     # app.py
     # This app.py was created in order to expose an API endpoint for
@@ -756,27 +756,27 @@ In the CORS section of the app.py, add the current Vercel URL, so the backend wi
     
     if __name__ == '__main__':
         app.run(debug=True)
-    
+
 
 
 
 #### 4.  Add the Environment Variables to the Vercel Dashboard
 
-Even though there is a file named ***.env.local*** in the ***frontend/src/app directory***, Vercel may not pick it up, so you will need to enter it manually in the *Vercell Dashboard*. To do that, take the following steps:
+Even though a file named ***.env.local*** exists in the ***frontend/src/app*** directory, Vercel may not automatically detect it, so you need to enter it manually in the *Vercel Dashboard*. To do that, take the following steps:
 
 1. Log in to Vercel (vercel.com). 
 2. On the ***Overview*** tab, you will see the project listed.  In this case, the project is listed as **physics_web_app**. 
 3. Click on the project name and then click on the ***Settings*** tab. 
 4. On the left side of the ***Project Settings*** page, there is a list of links to different types of settings. Click on the ***Environment Variables*** link. 
-5. On the ***Environment Variables*** page, scroll down to see if the **NEXT_PUBLIC_API_URL** key has been entered. If it has been prevously entered, it will be listed just ***above*** the ***Shared Environment Variables*** section. The key name will be visible, but the value will be hidden.
+5. On the ***Environment Variables*** page, scroll down to see if the **NEXT_PUBLIC_API_URL** key has been entered. If it has been previously entered, it will be listed just ***above*** the ***Shared Environment Variables*** section. The key name will be visible, but the value will be hidden.
 6. If the **NEXT_PUBLIC_API_URL** key does not appear, click on the ***Add Another*** button, enter the key name of **NEXT_PUBLIC_API_URL** and the value of Heroku API URL (which in this case is https://my-physics-formula-viewer-3x-3e0ec7edbc22.herokuapp.com). 
-7. Save this new key and value. When you save this value, the Vercel app will be rebuilt and (I believe) its URL will change. However, wait until a later step, when the URL will change again, to update the URL in the CORS section of app.py.
+7. Save this new key and value. When you save this value, the Vercel app will be rebuilt and (I believe) its URL will change. However, wait until a later step, when the URL changes again, before updating it in the CORS section of `app.py`.
 
 
 
 #### 4.  Rebuild the Vercel App from the Terminal
 
-As noted above, there are now two Terminal windows open – one where the backend Heroku app is running, and another where the frontend Vercel app is running.
+At this point, you should have two terminal windows open – one for the backend Heroku app and another for the frontend Vercel app.
 
 In the Vercel app Terminal window type the following command to rebuild and restart the app:
 
@@ -788,13 +788,13 @@ The output will be similar to the following:
     🔍  Inspect: https://vercel.com/david-longs-projects-14094a66/physics_web_app/5xyyhchwjsehrSNXJwctwVRRRxKU [699ms]
     ✅  Production: https://physicsweb-qzhqw8vdi-david-longs-projects-14094a66.vercel.app [699ms]
 
-Note that the production URL is changed. 
+Note that the production URL has changed.
 
 
 
 #### 5.  Copy the Last Vercel Product URL to app.py
 
-Copy the new Vercel URL into the app.py file. Note the Vercel URL listed in the CORS section just below the localhost entry. (The localhost entry is kept so the program will run both locally (with localhost:3000 and at the public URL provided by Vercel.)
+Copy the new Vercel URL into `app.py`. Note the Vercel URL listed in the CORS section just below the localhost entry. (The localhost entry is kept so the program will run both locally (with localhost:3000 and at the public URL provided by Vercel.)
 
     # app.py
     # This app.py was created in order to expose an API endpoint for
@@ -835,7 +835,7 @@ Copy the new Vercel URL into the app.py file. Note the Vercel URL listed in the 
     
     if __name__ == '__main__':
         app.run(debug=True)
-    
+
 
 
 
@@ -852,8 +852,8 @@ Copy the new Vercel URL into the app.py file. Note the Vercel URL listed in the 
 
 #### 7.  Launch the App at the Public URL
 
-In a brower window, enter the following (final) Vercel URL
+In a browser window, enter the final Vercel URL:
 
     https://physicsweb-qzhqw8vdi-david-longs-projects-14094a66.vercel.app
 
-The browser should now display the same content on the public URL and it did when it was pointing to the localhost above.
+The browser should now display the same content at the public URL as it did when pointing to localhost.
