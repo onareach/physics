@@ -46,7 +46,7 @@ The reasons for using React:
 
 **DOM (Document Object Model)** is a programming interface that represents a web page as a tree-like structure. It allows JavaScript to dynamically update, add, and remove elements on a webpage. In the DOM tree, every HTML element is a node. 
 
-To give an example of how the DOM represents and HTML page, consider the following HTML code:
+To give an example of how the DOM represents an HTML page, consider the following HTML code:
 
     html
     
@@ -215,7 +215,7 @@ The output should be:
 
 #### 1. Use mkdir and mv to create file structure shown at the introduction of this document
 
-The master folder structure (shown near the beginning of this document) needs to be created with mkdir commands, and the older Heroku project folder needs to be moved, using the mv command, inside the backend subfolder. After this is completed, the top of the folder and file structures should look like this:
+The master folder structure (shown near the beginning of this document) needs to be created with mkdir commands, and the older Heroku project folder needs to be moved, using the mv command, inside the backend subfolder. After this is completed, the top of the folder structures should look like this:
 
     bash
     
@@ -356,7 +356,7 @@ Add the following contents that contain the backend API URL to the file:
 
 Environment variables prefixed with NEXT_PUBLIC_* are exposed to frontend applications and browsers.
 
-One way you can confirm that this configuration in place is by opening a new browser tab and entering the following URL:
+You can confirm that this configuration is in place by opening a new browser tab and entering the following URL:
 
     (web browser)
     
@@ -385,7 +385,7 @@ Navigate to the frontend/src/app/page.tsx file, replace its contents with the fo
 
 
 
-#### 3.  Restart the server
+#### 3.  Restart the Server
 
 In the Terminal app where the server is running, use the following command to stop the frontend app server:
 
@@ -420,7 +420,7 @@ This confirms that the Next.js frontend is running. The frontend project structu
 
 
 
-#### 4.  Modify app.py (backend) to retrieve formula data from the backend database, convert it into a dictionary, and process it with `jsonify()`
+#### 4.  Modify app.py (backend) to Retrieve Formula Data from the Backend Database, Convert it into a Dictionary, and Process it with `jsonify()`
 
 Replace the code in app.py with the following code:
 
@@ -469,7 +469,7 @@ Replace the code in app.py with the following code:
         app.run(debug=True)
 
 
-#### 5.  Git commit, push changes, and restart Heroku
+#### 5.  Git Commit, Push Changes, and Restart Heroku
 
     bash
     
@@ -549,7 +549,7 @@ Replace the contents of page.tsx (in src/app/) with the following code:
 
 
 
-#### 8.  Restart the frontend (local) server
+#### 8.  Restart the Frontend (Local) Server
 
 Press Ctrl + C in the terminal to stop the frontend server, then restart it with:
 
@@ -557,7 +557,7 @@ Press Ctrl + C in the terminal to stop the frontend server, then restart it with
 
 
 
-#### 9.  Refresh the browser tab with the localhost:3000 URL
+#### 9.  Refresh the Browser Tab with the localhost:3000 URL
 
 Refresh the browser window pointing to localhost:3000. You should see the following content:
 
@@ -839,7 +839,7 @@ Copy the new Vercel URL into `app.py`. Note the Vercel URL listed in the CORS se
 
 
 
-#### 6.  Git commit, push changes, and restart Heroku
+#### 6.  Git Commit, Push Changes, and Restart Heroku
 
     bash
     
