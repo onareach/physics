@@ -1,8 +1,8 @@
-# Migrating the Frontend of Web App from Heroku to Vercel
+# Modify the Database and Change the Display on Vercel
 
-This proof-of-concept project shows how the front-end of a three-tier application (database, back-end server, and webpage) can be migrated from Heroku to Vercel.  The goal of this project is to convert the Heroku/Flask backend into an API that a Next.js app on Vercel can access.
+The purpose of this modification is to control the order in which formulas are displayed on the webpage.
 
-(Please see https://github.com/onareach/physics/tree/main/Web_Prototype_on_Heroku for a description of the application prior to migrating the front-end to Vercel.)
+(Please see https://github.com/onareach/physics/tree/main/Web_Prototype_on_Heroku and for a description of the application prior to migrating the front-end to Vercel.)
 
 #### Target Project File Structure
 
